@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버 연예 : 네이버 뉴스</title>
+    <style>
+        :root { --naver-green: #00c73c; --naver-bg: #f5f6f7; --text-dark: #1e1e23; --text-gray: #666; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", dotum, sans-serif; background-color: var(--naver-bg); margin: 0; color: var(--text-dark); line-height: 1.5; }
+        
+        /* Header Naver */
+        .header { background: #fff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-inner { max-width: 1080px; margin: 0 auto; display: flex; align-items: center; padding: 12px 20px; }
+        .logo { font-size: 24px; font-weight: 900; color: var(--naver-green); text-decoration: none; letter-spacing: -1px; }
+        .logo span { color: #000; font-size: 20px; margin-left: 4px; font-weight: 700; }
+        .nav { margin-left: 30px; display: flex; gap: 20px; }
+        .nav a { text-decoration: none; color: var(--text-gray); font-weight: 700; font-size: 15px; }
+        .nav a.active { color: #000; border-bottom: 2px solid #000; padding-bottom: 2px; }
+
+        /* Trending Ticker */
+        .ticker-bar { background: #fff; border-bottom: 1px solid #eee; padding: 8px 0; font-size: 13px; overflow: hidden; }
+        .ticker-content { display: flex; animation: slide 35s linear infinite; white-space: nowrap; }
+        .ticker-item { margin-right: 40px; font-weight: 500; }
+        .ticker-item b { color: #ff3b30; margin-right: 5px; }
+        @keyframes slide { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
+        .container { max-width: 1080px; margin: 20px auto; display: flex; gap: 24px; padding: 0 20px; }
+
+        /* Main Content */
+        .main { flex: 2.5; }
+        .section-header { border-bottom: 2px solid #333; padding-bottom: 8px; margin-bottom: 16px; }
+        .section-header h2 { font-size: 18px; margin: 0; font-weight: 800; }
+
+        .news-item { background: #fff; border: 1px solid #e5e5e5; display: flex; padding: 25px; margin-bottom: 15px; border-radius: 2px; }
+        .news-img { width: 200px; height: 120px; border-radius: 3px; object-fit: cover; margin-right: 20px; background: #eee; }
+        .news-content { flex: 1; }
+        .news-cat { font-size: 12px; color: #ff3b30; font-weight: 700; margin-bottom: 4px; }
+        .news-title { font-size: 20px; font-weight: 800; margin: 0 0 10px 0; line-height: 1.4; color: #000; }
+        .news-desc { font-size: 14px; color: #444; margin-bottom: 15px; }
+        .news-meta { font-size: 12px; color: #999; }
+
+        /* Comment Section Style */
+        .comment-wrap { background: #fff; border: 1px solid #e5e5e5; padding: 25px; margin-top: 20px; }
+        .cmt-header { font-size: 16px; font-weight: 800; border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 20px; }
+        .cmt-input-box { background: #f9f9f9; border: 1px solid #ddd; padding: 15px; margin-bottom: 25px; }
+        .cmt-textarea { width: 100%; height: 70px; border: 1px solid #ddd; padding: 10px; resize: none; font-size: 13px; outline: none; box-sizing: border-box; }
+        .cmt-btn { background: var(--naver-green); color: #fff; border: none; padding: 8px 25px; font-weight: bold; cursor: pointer; float: right; margin-top: 10px; }
+        
+        .cmt-item { border-bottom: 1px solid #eee; padding: 20px 0; }
+        .cmt-user { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+        .cmt-user span { font-weight: 400; color: #999; margin-left: 10px; }
+        .cmt-text { font-size: 14px; line-height: 1.6; color: #333; }
+        .cmt-actions { margin-top: 12px; font-size: 12px; color: #777; display: flex; gap: 15px; }
+        .cmt-reply { margin-left: 40px; background: #f8f8f8; padding: 15px; border-left: 3px solid #ddd; margin-top: 15px; }
+
+        /* Sidebar */
+        .sidebar { flex: 1; }
+        .box { background: #fff; border: 1px solid #e5e5e5; padding: 18px; margin-bottom: 20px; }
+        .rank-item { display: flex; text-decoration: none; color: #333; font-size: 14px; margin-bottom: 15px; }
+        .rank-num { color: var(--naver-green); font-weight: 800; width: 25px; font-size: 16px; }
+
+        footer { text-align: center; border-top: 1px solid #e5e5e5; padding: 30px; font-size: 12px; color: #888; background: #fff; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="#" class="logo">NAVER<span>뉴스</span></a>
+        <nav class="nav"><a href="#" class="active">연예</a><a href="#">스포츠</a><a href="#">뉴스홈</a></nav>
+    </div>
+</header>
+
+<div class="ticker-bar">
+    <div class="ticker-content">
+        <span class="ticker-item"><b>1</b> LOPXEEVER 9인조 논란</span>
+        <span class="ticker-item"><b>2</b> 블랙핑크 10주년 컴백 발표</span>
+        <span class="ticker-item"><b>3</b> 방탄소년단 월드투어 티켓팅</span>
+        <span class="ticker-item"><b>4</b> 베이비몬스터 'DRIP' 롱런</span>
+        <span class="ticker-item"><b>5</b> HAEL 엔터테인먼트 사태</span>
+    </div>
+</div>
+
+<div class="container">
+    <div class="main">
+        <div class="section-header"><h2>연예 주요뉴스</h2></div>
+
+        <article class="news-item">
+            <img src="HAEL ENTERTAINMENT.jpeg" alt="HAEL" class="news-img">
+            <div class="news-content">
+                <div class="news-cat">[단독]</div>
+                <h3 class="news-title">LOPXEEVER '9번째 멤버' 데뷔 직전 증발... HAEL 엔터 "내부 정비 중" 입장만 고수</h3>
+                <p class="news-desc">걸그룹 LOPXEEVER의 데뷔가 코앞으로 다가왔으나, 비주얼과 실력으로 기대를 모았던 핵심 멤버가 돌연 자취를 감췄다. 소속사의 불투명한 대응에 팬들의 분노가 폭발하고 있다.</p>
+                <div class="news-meta">K-Star 연ye | 2026.03.28 23:59</div>
+            </div>
+        </article>
+
+        <div class="comment-wrap">
+            <div class="cmt-header">댓글 <span style="color:var(--naver-green)">4,218</span></div>
+            
+            <div class="cmt-input-box">
+                <textarea id="userComment" class="cmt-textarea" placeholder="타인의 권리를 침해하거나 명예를 훼손하는 댓글은 운영원칙 및 관련 법률에 의해 제재를 받을 수 있습니다."></textarea>
+                <button onclick="addMyComment()" class="cmt-btn">등록</button>
+                <div style="clear:both"></div>
+            </div>
+
+            <div id="commentList">
+                <div class="cmt-item">
+                    <div class="cmt-user">user8821**** <span>3분 전</span></div>
+                    <div class="cmt-text">진짜 HAEL 엔터 실망이다. 티저까지 다 공개해놓고 이제 와서 멤버 제외? 이거 명백한 팬 기만 아님?</div>
+                    <div class="cmt-actions"><span>답글 24</span> <span style="color:var(--naver-green)">공감 1,204</span> <span style="color:#ff3b30">비공감 12</span></div>
+                    
+                    <div class="cmt-reply">
+                        <div class="cmt-user">kkim_99**** <span>1분 전</span></div>
+                        <div class="cmt-text">ㄹㅇ... 그 멤버가 이 그룹 센터급이었는데 빼면 어떡함? 진짜 소속사 무능함의 극치네.</div>
+                    </div>
+                </div>
+
+                <div class="cmt-item">
+                    <div class="cmt-user">kpop_lover**** <span>8분 전</span></div>
+                    <div class="cmt-text">실종설까지 도는 거 보면 보통 심각한 게 아닌 듯. HAEL 엔터 주가 떨어지는 거 안 보이나? 제대로 해명해라.</div>
+                    <div class="cmt-actions"><span>답글 5</span> <span style="color:var(--naver-green)">공감 530</span> <span style="color:#ff3b30">비공감 2</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="box">
+            <div style="font-weight:800; font-size:15px; margin-bottom:15px;">많이 본 뉴스</div>
+            <a href="#" class="rank-item"><span class="rank-num">1</span><span>LOPXEEVER 멤버 증발 미스터리</span></a>
+            <a href="#" class="rank-item"><span class="rank-num">2</span><span>블랙핑크 10주년 역대급 규모 투어</span></a>
+            <a href="#" class="rank-item"><span class="rank-num">3</span><span>BTS 완전체 컴백 날짜 확정?</span></a>
+            <a href="#" class="rank-item"><span class="rank-num">4</span><span>HAEL 엔터테인먼트 긴급 입장문 발표</span></a>
+        </div>
+    </div>
+</div>
+
+<footer>Copyright © NAVER Corp. All Rights Reserved.</footer>
+
+<script>
+    function addMyComment() {
+        const txt = document.getElementById('userComment').value;
+        if(!txt.trim()) return;
+        const list = document.getElementById('commentList');
+        const div = document.createElement('div');
+        div.className = 'cmt-item';
+        div.style.background = '#fffde7'; // Hiệu ứng highlight khi mới đăng
+        div.innerHTML = `
+            <div class="cmt-user">guest_user**** <span>방금 전</span></div>
+            <div class="cmt-text">${txt}</div>
+            <div class="cmt-actions"><span>답글 0</span> <span>공감 0</span> <span>비공감 0</span></div>
+        `;
+        list.prepend(div);
+        document.getElementById('userComment').value = "";
+        setTimeout(() => div.style.background = '#fff', 2000);
+    }
+</script>
+</body>
+</html>
